@@ -33,25 +33,24 @@ Poniższe wymagania dotyczą całości oddawanego kodu - zarówno kodu istnieją
 
 Kod powinien być czytelny i samodokumentujący się. Wymagania:
 
-* **Nazwy mówią wprost, co oznaczają** — zmienne, metody i klasy powinny mieć pełne, opisowe nazwy w jednym języku (angielskim). Przykłady błędów w kodzie startowym do poprawy:
-    * `pomOrganism`, `pomPosition`, `pomPositions` → np. `candidateOrganism`, `candidatePosition`, `candidatePositions`
-    * `atackingOrganism` → `attackingOrganism` (literówka)
-* **Brak magicznych liczb** — stałe liczbowe (np. wartości parametrów organizmów) powinny być wyrażone jako nazwane stałe klasy, np.:
+* **Nazwy mówią wprost, co oznaczają** - zmienne, metody i klasy powinny mieć pełne, opisowe nazwy w jednym języku (angielskim). Przykłady błędów w kodzie startowym do poprawy:
+    * `pomOrganism`, `pomPosition`, `pomPositions` → np. `candidateOrganism`, `candidatePosition`, `candidatePositions`, `attackingOrganism`
+* **Brak magicznych liczb** - stałe liczbowe (np. wartości parametrów organizmów) powinny być wyrażone jako nazwane stałe klasy, np.:
     ```python
     INITIAL_POWER = 3
     INITIAL_INITIATIVE = 3
     ```
-* **Każda metoda robi dokładnie jedną rzecz** — jeśli metoda robi więcej, należy ją rozbić.
-* **Metody nie przekraczają ~20 linii** — długa metoda to sygnał, że warto ją podzielić.
-* **Brak martwego kodu** — żadnych zakomentowanych fragmentów, nieużywanych zmiennych ani importów.
+* **Każda metoda robi dokładnie jedną rzecz** - jeśli metoda robi więcej, należy ją rozbić.
+* **Metody nie przekraczają ~20 linii** - długa metoda to sygnał, że warto ją podzielić.
+* **Brak martwego kodu** - żadnych zakomentowanych fragmentów, nieużywanych zmiennych ani importów.
 
 ### Separation of Concerns
 
-Każda klasa powinna mieć jedną, jasno określoną odpowiedzialność. W kodzie startowym klasa `World` łączy kilka różnych odpowiedzialności — należy je rozdzielić:
+Każda klasa powinna mieć jedną, jasno określoną odpowiedzialność. W kodzie startowym klasa `World` łączy kilka różnych odpowiedzialności - należy je rozdzielić:
 
-* **`WorldRenderer`** — odpowiada wyłącznie za wizualizację świata (metoda `__str__` i cała logika renderowania planszy powinna trafić do tej klasy).
-* **`TurnManager`** — odpowiada za logikę jednej tury: kolejkowanie akcji, ich wykonanie oraz aktualizację stanu organizmów. Metoda `makeTurn` oraz `makeMove` powinny być przeniesione i ewentualnie rozbite na mniejsze, prywatne metody.
-* **`World`** — po refaktoryzacji odpowiada wyłącznie za przechowywanie stanu świata (lista organizmów, wymiary) i udostępnianie operacji na pozycjach (`positionOnBoard`, `getNeighboringPositions`, itd.).
+* **`WorldRenderer`** - odpowiada wyłącznie za wizualizację świata (metoda `__str__` i cała logika renderowania planszy powinna trafić do tej klasy).
+* **`TurnManager`** - odpowiada za logikę jednej tury: kolejkowanie akcji, ich wykonanie oraz aktualizację stanu organizmów. Metoda `makeTurn` oraz `makeMove` powinny być przeniesione i ewentualnie rozbite na mniejsze, prywatne metody.
+* **`World`** - po refaktoryzacji odpowiada wyłącznie za przechowywanie stanu świata (lista organizmów, wymiary) i udostępnianie operacji na pozycjach (`positionOnBoard`, `getNeighboringPositions`, itd.).
 
 Każda z nowych klas powinna być objęta testami jednostkowymi weryfikującymi jej izolowaną odpowiedzialność.
 
@@ -83,7 +82,7 @@ Zaimplementować możliwość dodania po dowolnej turze dowolnego nowego organiz
 
 ## Ewolucja ekologiczna [4 pkt]
 
-Żaden gatunek nie powinien wyginąć — świat dąży do zachowania bioróżnorodności.
+Żaden gatunek nie powinien wyginąć - świat dąży do zachowania bioróżnorodności.
 
 Zasady:
 * Świat śledzi populację każdego gatunku osobno (na podstawie klasy organizmu).
@@ -97,14 +96,14 @@ Wymagania implementacyjne:
 
 ## Kosmita [5 pkt]
 
-Dodać nowy typ organizmu — **kosmitę** — który nie jest ani rośliną, ani zwierzęciem. Kosmita dziedziczy bezpośrednio po `Organism`.
+Dodać nowy typ organizmu - **kosmitę** - który nie jest ani rośliną, ani zwierzęciem. Kosmita dziedziczy bezpośrednio po `Organism`.
 
 Cechy kosmity:
 * `INITIAL_POWER = 0`
 * `INITIAL_INITIATIVE = 10`
 * `INITIAL_LIVE_LENGTH = 999`
 * `SIGN = 'K'`
-* Kosmita **nie atakuje, nie ucieka i nie rozmnaża się** — metody `move()` i `action()` zwracają puste listy.
+* Kosmita **nie atakuje, nie ucieka i nie rozmnaża się** - metody `move()` i `action()` zwracają puste listy.
 * Kosmita **pojawia się z nikąd**: co określoną liczbę tur (np. co 7 tur) lub z zadanym prawdopodobieństwem na losowym wolnym polu planszy, bez ingerencji gracza.
 
 Efekt zamrożenia czasu:
@@ -114,7 +113,7 @@ Efekt zamrożenia czasu:
     * **nie wykonują akcji** (`action()` jest pomijane),
     * **nie tracą czasu życia** (`liveLength` nie maleje),
     * **nie zyskują siły** (`power` nie rośnie).
-* Reszta planszy działa normalnie — czas płynie dla organizmów poza strefą zamrożenia.
+* Reszta planszy działa normalnie - czas płynie dla organizmów poza strefą zamrożenia.
 * Jeżeli na planszy jest kilka kosmitów, ich strefy zamrożenia się sumują (unia zamrożonych pól).
 
 Wymagania implementacyjne:
